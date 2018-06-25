@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "39950388791",
+    "firebase_url": "https://ndoto-31de0.firebaseio.com",
+    "project_id": "ndoto-31de0",
+    "storage_bucket": "ndoto-31de0.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:39950388791:android:cb9c55b27fa6be33",
+        "android_client_info": {
+          "package_name": "ndoto.com.ndoto"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "39950388791-439bfg5ie4gfb5fnpojaf2thdjnfuajm.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ndoto.com.ndoto",
+            "certificate_hash": "d0b2adf3e9fd35f19e15f7c5bc956436e7ba64d6"
+          }
+        },
+        {
+          "client_id": "39950388791-oe5ebp55fr115ddu929ete9gce5e7qon.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAPK7KzJPRZnaQ-cP0if81doXAXjQKfkOA"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "39950388791-oe5ebp55fr115ddu929ete9gce5e7qon.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
