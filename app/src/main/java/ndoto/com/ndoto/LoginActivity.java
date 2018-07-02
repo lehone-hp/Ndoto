@@ -43,8 +43,8 @@ import static android.Manifest.permission.READ_CONTACTS;
 public class LoginActivity extends AppCompatActivity {
 
 
-    private TextView mTextMessage;
-    private  Button first,second;
+    private TextView mTextMessage, phoneNumberView, passwordView;
+    private Button first,second;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -84,6 +84,18 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        /* Get the Intent that started this activity and extract the string
+        Intent intent = getIntent();
+        String phone = intent.getStringExtra(LoginDisplayActivity.EXTRA_PHONE_NUMBER);
+        String pass = intent.getStringExtra(LoginDisplayActivity.EXTRA_PASSWORD);
+
+        phoneNumberView = (TextView) findViewById(R.id.textViewPhoneNumber);
+        passwordView = (TextView) findViewById(R.id.textViewPassword);
+
+        phoneNumberView.setText(phone);
+        passwordView.setText(pass);
+        */
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);

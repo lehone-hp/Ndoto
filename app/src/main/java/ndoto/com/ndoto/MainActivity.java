@@ -15,6 +15,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.List;
+
 public class MainActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
@@ -66,10 +68,52 @@ class User{
     private String firstName;
     private String phoneNumber;
     private String password;
+
     public User(String l, String f, String p, String pa){
         lastName=l;
         firstName=f;
         phoneNumber=p;
         password=pa;
     }
+
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+}
+
+class MockUsers{
+    public static User[] users = {
+            new User("Lenya", "Hope", "675230094", "12345"),
+            new User("Akwa", "Man", "675230094", "12345")
+    };
 }

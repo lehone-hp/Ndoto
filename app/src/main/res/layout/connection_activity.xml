@@ -47,6 +47,13 @@
                 android:layout_weight=".75"
                 android:orientation="vertical">
 
+                <TextView
+                    android:id="@+id/loginErrorMessage"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:textColor="@color/colorAccent"/>
+
                 <EditText
                     android:id="@+id/phoneNumber"
                     android:layout_width="250dp"
@@ -79,7 +86,8 @@
                     android:layout_marginBottom="15dp"
                     android:layout_weight="0.57"
                     android:background="@android:drawable/button_onoff_indicator_on"
-                    android:text="Login" />
+                    android:text="Login"
+                    android:onClick="attemptLogin"/>
 
                 <Space
                     android:layout_width="match_parent"
