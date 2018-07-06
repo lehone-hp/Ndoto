@@ -2,65 +2,87 @@ package ndoto.com.ndoto;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.view.MenuItem;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity {
 
-    private TextView mTextMessage;
+    private EditText firstName, lastName, phoneNumber, password;
+    private Button signUp;
+
     private DatabaseReference mDatabase;
-    private FirebaseAuth mAuth;
-    final String EXTRA_LASTNAME = "lastName";
-    final String EXTRA_FIRSTNAME = "firstName";
-    final String EXTRA_PHONENUMBER = "phoneNumber";
-    final String EXTRA_PASSWORD = "password";
+
+    public static final String EXTRA_PHONENUMBER = "phoneNumber";
+    public static final String EXTRA_PASSWORD = "password";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-
-// ...
-
-        mDatabase = FirebaseDatabase.getInstance().getReference();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        final Button loginButton = (Button) findViewById(R.id.signUp);
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            final EditText lastName=(EditText) findViewById(R.id.lastName);
-            final EditText firstName=(EditText) findViewById(R.id.firstName);
-            final EditText phoneNumber=(EditText) findViewById(R.id.phoneNumber);
-            final EditText password=(EditText) findViewById(R.id.password);
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
+        firstName = (EditText) findViewById(R.id.firstName);
+        lastName = (EditText) findViewById(R.id.lastName);
+        phoneNumber = (EditText) findViewById(R.id.phoneNumber);
+        password = (EditText) findViewById(R.id.password1);
+        signUp = (Button) findViewById(R.id.signUp);
+
+        signUp.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, LoginDisplayActivity.class);
-                intent.putExtra(EXTRA_LASTNAME,lastName.getText());
-                intent.putExtra(EXTRA_FIRSTNAME,firstName.getText());
-                intent.putExtra(EXTRA_PHONENUMBER,phoneNumber.getText());
-                User user=new User(lastName.getText().toString(),firstName.getText().toString(),phoneNumber.getText().toString(),password.getText().toString());
-//                String s=
-                mDatabase.child("users").child(lastName.getText().toString()).setValue(lastName.getText().toString());
-//                intent.putExtra(EXTRA_PASSWORD,password.getText());
-                startActivity(intent);
+            public void onClick(View view) {
+                String fn = firstName.getText().toString().trim();
+                String ln = lastName.getText().toString().trim();
+                String phone = phoneNumber.getText().toString().trim();
+                String pass = password.getText().toString().trim();
+
+                User user = new User(fn, ln, phone, pass);
+
+                if (TextUtils.isEmpty(fn)) {
+                    Toast.makeText(getApplicationContext(), "Enter First Name!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (TextUtils.isEmpty(ln)) {
+                    Toast.makeText(getApplicationContext(), "Enter Last Name!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (TextUtils.isEmpty(phone)) {
+                    Toast.makeText(getApplicationContext(), "Enter Phone Number!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (TextUtils.isEmpty(pass)) {
+                    Toast.makeText(getApplicationContext(), "Enter Password!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                if (password.length() < 6) {
+                    Toast.makeText(getApplicationContext(), "Password too short, enter minimum 6 characters!", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+
+                try {
+                    mDatabase.child("users").child(phone).setValue(user);
+                    Intent intent = new Intent(MainActivity.this, LoginDisplayActivity.class);
+                    intent.putExtra(EXTRA_PHONENUMBER, phone);
+                    intent.putExtra(EXTRA_PASSWORD, pass);
+                    startActivity(intent);
+                } catch (Exception e){
+                    Toast.makeText(getApplicationContext(), "Cannot connect to server!", Toast.LENGTH_SHORT).show();
+                }
             }
         });
-
-//        mTextMessage = (TextView) findViewById(R.id.message);
-//        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
-//        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
     }
-
 }
 
 class User{
@@ -68,6 +90,8 @@ class User{
     private String firstName;
     private String phoneNumber;
     private String password;
+
+    public User() {}
 
     public User(String l, String f, String p, String pa){
         lastName=l;
