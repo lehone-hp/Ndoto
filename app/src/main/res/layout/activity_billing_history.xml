@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".BillingHistory">
+
+    <TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/billing_history_table"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="20dp">
+
+        <TableRow>
+            <TextView
+                android:text="Date"
+                android:padding="3dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"/>
+            <TextView
+                android:text="Bill"
+                android:padding="3dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+            <TextView
+                android:text="Consumed"
+                android:padding="3dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+        </TableRow>
+    </TableLayout></android.support.constraint.ConstraintLayout>

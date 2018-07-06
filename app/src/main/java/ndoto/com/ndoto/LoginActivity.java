@@ -112,5 +112,10 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
     }
+
+    public void openHistory(View view) {
+        Intent intent = new Intent(LoginActivity.this, BillingHistory.class);
+        startActivity(intent);
+    }
 }
 
